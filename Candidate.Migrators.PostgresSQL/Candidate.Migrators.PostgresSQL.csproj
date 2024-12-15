@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<RootNamespace>Candidate.Migrators.PostgresSqlQL</RootNamespace>
+  </PropertyGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\Candidate.Application\Candidate.Application.csproj "/>
+		<ProjectReference Include="..\Candidate.Identity\Candidate.Identity.csproj "/>
+		<ProjectReference Include="..\Candidate.Infrastructure\Candidate.Infrastructure.csproj "/>
+	</ItemGroup>
+		
+	<packPackageReference /> incInclude=""
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>
