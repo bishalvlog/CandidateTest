@@ -29,7 +29,9 @@ namespace Candidate.Infrastructure.Dependancy
             services.AddScoped<IApplicationDbContext>(provider =>
                 provider.GetService<ApplicationDbContext>()!);
 
-          // services.AddHttp();
+            services.AddHttpClient();
+
+            services.AddCors();
 
             services.AddDistributedMemoryCache();
 

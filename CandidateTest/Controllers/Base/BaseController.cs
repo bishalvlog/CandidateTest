@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.StaticFiles;
 
 namespace CandidateTest.Controllers.Base
 {
+    [ApiController]
     public abstract class BaseController<T> : ControllerBase where T : BaseController<T>
     {
         protected static string GetContentType(string fileName)

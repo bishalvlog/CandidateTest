@@ -1,6 +1,6 @@
-﻿namespace Candidate.Application.DTOs.Candidate
+﻿namespace CandidateWeb.Models.Requests
 {
-    public class CreateUpdateCandidateDto
+    public class CreateCandidateDto
     {
         public string FirstName { get; set; }
 
@@ -10,7 +10,7 @@
 
         public string Email { get; set; }
 
-        public string? BestCallTime { get; set; }
+        public TimeSpan? BestCallTime { get; set; }  = null;
 
         public string LinkedInProfileURL { get; set; }
 
@@ -19,4 +19,3 @@
         public string Comment { get; set; }
     }
 }
-

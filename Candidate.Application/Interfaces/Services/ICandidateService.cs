@@ -5,6 +5,6 @@ namespace Candidate.Application.Interfaces.Services
 {
     public interface ICandidateService :ITransientService
     {
-        bool InsertUpdateCandidate(CreateUpdateCandidateDto candidateDto);
+        bool InsertCandidate(CreateCandidateDto candidateDto);
     }
 }

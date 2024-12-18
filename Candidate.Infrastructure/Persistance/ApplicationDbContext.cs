@@ -11,18 +11,18 @@ using System.Reflection;
 
 namespace Candidate.Infrastructure.Persistance
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options), IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext, IApplicationDbContext
     {
         public DbSet<Candidates> Candidates { get; set; }
 
-
         public IDbConnection Connection => Database.GetDbConnection();
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public override int SaveChanges()
         {
             return base.SaveChanges();
         }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -61,5 +61,4 @@ namespace Candidate.Infrastructure.Persistance
             base.OnModelCreating(builder);
         }
     }
-
 }

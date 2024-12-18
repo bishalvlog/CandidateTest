@@ -7,41 +7,39 @@ namespace Candidate.Infrastructure.Implementation.Services
 {
     public class CandidateService(IGenericRepository genericRepository) : ICandidateService
     {
-        public bool InsertUpdateCandidate(CreateUpdateCandidateDto candidateDto)
+        public bool InsertCandidate(CreateCandidateDto candidateDto)
         {
-            var existsCandidate = genericRepository.Exists<Candidates>(c => c.Email == candidateDto.Email);
-
-            if (existsCandidate) 
-            { 
-                candidateDto.FirstName = candidateDto.LastName;
-                candidateDto.LastName = candidateDto.FirstName;
-                candidateDto.PhoneNumber = candidateDto.PhoneNumber;
-                candidateDto.Comment = candidateDto.Comment;
-                candidateDto.BestCallTime = candidateDto.BestCallTime;
-                candidateDto.LinkedInProfileURL = candidateDto.LinkedInProfileURL;
-                candidateDto.GitHubProfileURL = candidateDto.GitHubProfileURL;
-
-                genericRepository.Update(candidateDto);
-
-                return true;
-            }
-            else
+            try
             {
-                var candidate = new Candidates
+                var existsCandidate = genericRepository.Exists<Candidates>(c => c.Email == candidateDto.Email);
+
+                if (existsCandidate)
                 {
-                    FirstName = candidateDto.FirstName,
-                    LastName = candidateDto.LastName,
-                    Email = candidateDto.Email,
-                    PhoneNumber = candidateDto.PhoneNumber,
-                    BestCallTime = candidateDto.BestCallTime,
-                    LinkedInProfileURL = candidateDto.LinkedInProfileURL,
-                    GitHubProfileURL = candidateDto.GitHubProfileURL,
-                    Comment = candidateDto.Comment,
-                };
+                    return false;
+                }
+                else
+                {
+                    var candidate = new Candidates
+                    {
+                        FirstName = candidateDto.FirstName,
+                        LastName = candidateDto.LastName,
+                        Email = candidateDto.Email,
+                        PhoneNumber = candidateDto.PhoneNumber,
+                        LinkedInProfileURL = candidateDto.LinkedInProfileURL,
+                        GitHubProfileURL = candidateDto.GitHubProfileURL,
+                        Comment = candidateDto.Comment,
+                        CreatedAt = DateTime.UtcNow,
+                        IsActive = true
+                    };
 
-                genericRepository.Insert(candidate);
+                    genericRepository.Insert(candidate);
 
-                return false;
+                    return true;
+                }
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("An error occurred while inserting the candidate.", ex);
             }
         }
     }

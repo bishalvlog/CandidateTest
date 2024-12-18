@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Candidate.Application.Common.Service;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Candidate.Infrastructure.Dependancy
 {
@@ -6,8 +7,8 @@ namespace Candidate.Infrastructure.Dependancy
     {
         public static IServiceCollection AddDependencyServices(this IServiceCollection services) => 
             services
-            .AddServices(typeof(IServiceScope), ServiceLifetime.Transient)
-            .AddServices(typeof(IServiceScope), ServiceLifetime.Scoped);
+            .AddServices(typeof(IScopedService), ServiceLifetime.Scoped)
+            .AddServices(typeof(ITransientService), ServiceLifetime.Transient);
 
         private static IServiceCollection AddServices(this IServiceCollection services, Type interfaceType, ServiceLifetime lifetime)
         {

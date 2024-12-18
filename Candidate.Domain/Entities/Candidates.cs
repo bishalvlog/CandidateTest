@@ -16,11 +16,11 @@ namespace Candidate.Domain.Entities
         [Required]
         public string Email { get; set; }
 
-        public string? BestCallTime { get; set; }
+        public TimeSpan? BestCallTime { get; set; }
 
-        public string LinkedInProfileURL { get; set; }
+        public string? LinkedInProfileURL { get; set; }
 
-        public string GitHubProfileURL { get; set; }
+        public string? GitHubProfileURL { get; set; }
 
         [Required]
         public string Comment { get; set; }

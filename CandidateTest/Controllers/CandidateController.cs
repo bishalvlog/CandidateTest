@@ -7,14 +7,15 @@ using System.Net;
 
 namespace CandidateTest.Controllers
 {
+    [Route("api/candidate")]
     public class CandidateController(ICandidateService candidateService) : BaseController<CandidateController>
     {
         [HttpPost]
-        public IActionResult InsertUpdateCandidate(CreateUpdateCandidateDto candidateDto)
+        public IActionResult InsertUpdateCandidate([FromBody] CreateCandidateDto candidateDto)
         {
-            bool isUpdate = candidateService.InsertUpdateCandidate(candidateDto);
+            bool isUpdate = candidateService.InsertCandidate(candidateDto);
 
-            string message = isUpdate ? "Candidate updated successfully." : "Candidate inserted successfully.";
+            string message = isUpdate ? "Candidate inserted successfully." : "Candidate already exists.";
 
             return Ok(new ResponseDto<bool>()
             {

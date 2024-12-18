@@ -1,0 +1,24 @@
+﻿@page "/candidate"
+@using Microsoft.AspNetCore.Components.Forms
+
+<MudContainer> 
+    <MudCard> 
+        <MudCardContent> 
+            <MudText Typo="Typo.h5" GutterBottom="true">Candidate Information</MudText> 
+            <EditForm Model="candidateDto"> <DataAnnotationsValidator />
+                <ValidationSummary />
+                <MudTextField @bind-Value="candidateDto.FirstName" Label="First Name" Required="true" /> 
+                <MudTextField @bind-Value="candidateDto.LastName" Label="Last Name" Required="true" /> 
+                <MudTextField @bind-Value="candidateDto.Email" Label="Email" Required="true" /> 
+                <MudTextField @bind-Value="candidateDto.PhoneNumber" Label="Phone Number" />
+                <MudTextField @bind-Value="candidateDto.LinkedInProfileURL" Label="LinkedIn Profile URL" />
+                <MudTextField @bind-Value="candidateDto.GitHubProfileURL" Label="GitHub Profile URL" /> 
+                <MudTextField @bind-Value="candidateDto.Comment" Label="Free Text Comment" Required="true"/>
+                <MudButton Type="Submit" Color="Color.Primary" OnClick="HandleValidSubmit" Disabled="IsCreateUpdateModalOpen" Variant="Variant.Filled">Submit</MudButton>
+            </EditForm> 
+
+            <MudAlert Severity="MudBlazor.Severity.Success" Elevation="0" Style="margin-top: 20px;"  Visible="@isSuccessVisible">@successMessage</MudAlert>
+            <MudAlert Severity="MudBlazor.Severity.Error" Elevation="0" Style="margin-top: 20px;" Visible="@isErrorVisible">@errorMessage</MudAlert>
+        </MudCardContent> 
+    </MudCard> 
+</MudContainer>
